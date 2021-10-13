@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ewelina-jazurek/cypress-course/issues"
   },
-  "homepage": "https://github.com/ewelina-jazurek/cypress-course#readme"
+  "homepage": "https://github.com/ewelina-jazurek/cypress-course#readme",
+  "devDependencies": {
+    "cypress": "^8.6.0"
+  }
 }
