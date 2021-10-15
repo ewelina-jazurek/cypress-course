@@ -12,17 +12,21 @@ describe("Inspect Automation Test Store item using chain of commands", () => {
 
         });
 
-    it("Click on the first item using item text ",
+    it.only("Click on the first item using item text ",
         () => {
             // cypress code 
             cy.visit("https://automationteststore.com/");
             cy.get('.prdocutname')
                 .contains('Skinsheen Bronzer Stick')
-                .click();
+                .click().then((itemHeaderText)
+                    => {
+                    console.log("Selected the following item+ " + itemHeaderText.text())
+                });
+
 
         });
 
-    it.only("Click on the first item using item text ",
+    it("Click on the first item using item text ",
         () => {
             cy.visit("https://automationteststore.com/");
             cy.get('.fixed_wrapper').find('.prdocutname').eq(0).click();
