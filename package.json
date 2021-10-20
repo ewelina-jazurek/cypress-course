@@ -20,6 +20,7 @@
   "homepage": "https://github.com/ewelina-jazurek/cypress-course#readme",
   "devDependencies": {
     "cypress": "^8.6.0",
+    "cypress-file-upload": "^5.0.8",
     "cypress-xpath": "^1.6.2"
   }
 }
