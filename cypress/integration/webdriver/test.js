@@ -2,6 +2,12 @@
 /// <reference types="Cypress" />
 
 describe("Test Contact Us form via WebdriverUni", () => {
+    before(function () {
+        cy.fixture('example').then(function (data) {
+            // this.data = data;
+            globalThis.data = data;
+        })
+    })
     it.only("Should be able to submit a successful submission via contact us form", () => {
         // cypress code 
         // cy.visit("https://webdriveruniversity.com/Contact-Us/contactus.html")
@@ -11,9 +17,9 @@ describe("Test Contact Us form via WebdriverUni", () => {
         cy.title().should('include', 'WebDriver | Contact Us')
         cy.url().should('include', 'contactus')
         // cy.get('#contact-us').click({force: true})
-        cy.get('[name ="first_name"]').type("Joe")
-        cy.get('[name ="last_name"]').type("Smith")
-        cy.get('[name ="email"]').type("joe@example.com")
+        cy.get('[name ="first_name"]').type(data.first_name)
+        cy.get('[name ="last_name"]').type(data.last_name)
+        cy.get('[name ="email"]').type(data.email)
         cy.get('[name ="email"]').should('have.attr', 'name', 'email')
         cy.get('textarea.feedback-input').type("hello")
         cy.get('[type="submit"]').click();
