@@ -44,7 +44,7 @@ describe("Handle js alerts WebdriverUni", () => {
 
     it.only("Validate js confirm alert box works correctly when clicking Cancel", () => {
         // cy.visit("https://webdriveruniversity.com/Contact-Us/contactus.html")
-        cy.visit("https://webdriveruniversity.com")
+        cy.visit("/")
         cy.get('#popup-alerts').invoke('removeAttr', 'target').click({ force: true })
 
         const stub = cy.stub()
