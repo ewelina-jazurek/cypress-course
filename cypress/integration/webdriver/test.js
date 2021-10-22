@@ -1,9 +1,12 @@
 import HomePage_PO from '../../support/pageObjects/webriver-uni/Homepage_PO.js'
-
+import ContactUs_PO from '../../support/pageObjects/webriver-uni/contact_PO.js'
 
 /// <reference types="Cypress" />
 
 describe("Test Contact Us form via WebdriverUni", () => {
+    const homePage_PO = new HomePage_PO();
+    const contactUs_PO = new ContactUs_PO();
+
     before(function () {
         cy.fixture('example').then(function (data) {
             // this.data = data;
@@ -15,7 +18,6 @@ describe("Test Contact Us form via WebdriverUni", () => {
         // cy.visit("https://webdriveruniversity.com/Contact-Us/contactus.html")
         // cy.visit("https://webdriveruniversity.com")
         // cy.get('#contact-us').invoke('removeAttr', 'target').click({ force: true })
-        const homePage_PO = new HomePage_PO();
         homePage_PO.visitHomepage();
         homePage_PO.clickOn_ContactUs_Button();
     })
@@ -33,7 +35,9 @@ describe("Test Contact Us form via WebdriverUni", () => {
         // cy.get('textarea.feedback-input').type("hello")
         // cy.get('[type="submit"]').click();
         // cy.get('h1').should('have.text', 'Thank You for your Message!')
-        cy.webdriverUni_ContactForm_Submission(data.first_name, data.last_name, data.email, "hello", 'h1', 'Thank You for your Message!');
+        // cy.webdriverUni_ContactForm_Submission(data.first_name, data.last_name, data.email, "hello", 'h1', 'Thank You for your Message!');
+
+        contactUs_PO.contactForm_Submission(data.first_name, data.last_name, data.email, "hello", 'h1', 'Thank You for your Message!')
     });
 
     // .only to keep only 1 test scenario 
@@ -43,7 +47,7 @@ describe("Test Contact Us form via WebdriverUni", () => {
         // cy.get('textarea.feedback-input').type("hello")
         // cy.get('[type="submit"]').click();
         // cy.get('body').contains('Error: all fields are required')
-        cy.webdriverUni_ContactForm_Submission(data.first_name, data.last_name, " ", "hello", 'body', 'Error: Invalid email address');
+        contactUs_PO.contactForm_Submission(data.first_name, data.last_name, " ", "hello", 'body', 'Error: Invalid email address');
 
     });
 })
