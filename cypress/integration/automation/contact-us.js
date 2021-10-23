@@ -1,13 +1,19 @@
 
 /// <reference types="Cypress" />
 
-describe("Test Contact Us form via WAutomation Test Store", () => {
+describe("Test Contact Us form via Automation Test Store", () => {
     before(function () {
         // cy.viewport(550, 750)
         cy.fixture("userDetails").as("user")
     })
 
-    it("Should be able to submit a successful submission via contact us form", () => {
+    it("Should be able to submit a successful submission via contact us form", {
+        retries: {
+            runMode: 2,
+            openMode: 2
+        }
+
+    }, () => {
         // cypress code 
         cy.visit("https://automationteststore.com/")
         // cy.get('#contact-us').click({force: true})
