@@ -20,7 +20,9 @@ describe("Test Contact Us form via WebdriverUni", () => {
         // cy.visit("https://webdriveruniversity.com")
         // cy.get('#contact-us').invoke('removeAttr', 'target').click({ force: true })
         homePage_PO.visitHomepage();
+        // cy.wait(3000);
         homePage_PO.clickOn_ContactUs_Button();
+        // cy.pause();
     })
 
     it("Should be able to submit a successful submission via contact us form", () => {

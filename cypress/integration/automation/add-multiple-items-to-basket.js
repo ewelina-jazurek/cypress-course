@@ -14,6 +14,8 @@ describe("Add multiple product to basket", () => {
     });
 
     beforeEach(function () {
+        cy.clearLocalStorage();
+        cy.clearCookies();
         autoStore_Homepage_PO.accesHomepage();
         autoStore_Homepage_PO.clickOn_HairCare_Link();
         cy.get("a[href*='product/category&path=']").contains("Hair Care").click()

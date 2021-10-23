@@ -3,6 +3,7 @@
 
 describe("Test Contact Us form via WAutomation Test Store", () => {
     before(function () {
+        // cy.viewport(550, 750)
         cy.fixture("userDetails").as("user")
     })
 
