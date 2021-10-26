@@ -1,6 +1,6 @@
 
 let promise = new Promise((resolve, reject) => {
-    let a = 1 + 1
+    let a = 1 + 2
     if (a == 2) {
         resolve('Promise Fulfilled')
     } else {
