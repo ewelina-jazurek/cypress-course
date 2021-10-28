@@ -8,9 +8,9 @@ describe("Add multiple product to basket", () => {
 
 
     before(function () {
-        cy.fixture("products").then(function (data) {
-            globalThis.data = data;
-        });
+        // cy.fixture("products").then(function (data) {
+        //     globalThis.data = data;
+        // });
     });
 
     beforeEach(function () {
@@ -24,4 +24,14 @@ describe("Add multiple product to basket", () => {
     it("Add specific product to basket", () => {
         autoStore_HairCare_PO.addHairCareProductToBasket();
     });
+
+    it.only("Add specific product to basket", () => {
+        cy.fixture('products').then(products => {
+            autoStore_HairCare_PO.addHairCareProductToBasket(products);
+        });
+    });
+
+    it('test 2', () => {
+        cy.log('products', globalThis.data);
+    })
 })

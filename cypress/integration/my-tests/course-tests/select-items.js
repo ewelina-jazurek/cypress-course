@@ -2,8 +2,16 @@
 
 describe("Selecting items", () => {
     beforeEach(function () {
+        cy.clearLocalStorage();
+        cy.clearCookies();
         cy.visit("https://automationteststore.com/")
     })
+
+    before(function () {
+        cy.fixture("makeup-prod").then(function (data) {
+            globalThis.data = data;
+        });
+    });
 
     it("Select a specific product", () => {
         cy.get('body > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > section:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2)')
@@ -49,19 +57,39 @@ describe("Selecting items", () => {
 
     })
 
-    it.only("click on the selected item", () => {
+    it("click on the selected item", () => {
         cy.get("a[href*='product/category&path=']").contains("Gift Ideas & Sets").click({ force: true })
         cy.get('.heading1').then(($headerText) => {
             const headerText = $headerText.text();
-            cy.log("found header text:" + headerText)
-
+            cy.log("found header text:" + headerText);
+            cy.get('.prdocutname').contains("Night Care Crema Nera").click()
+            // cy.get(':nth-child(2) > .fixed_wrapper > .fixed > .prdocutname').click()
+            cy.get('.cart').click()
         })
 
     });
 
-    it("click on the selected item", () => {
-        cy.get("a[href*='product/category&path=']").contains("Face").click({ force: true })
+    it.only("add multiple products to basket", () => {
+        cy.get("a[href*='product/category&path=']").contains("Skincare").click({ force: true })
 
+        const products = [
+            "Absolue Eye Precious Cells",
+            "Creme Precieuse Nuit 50ml",
+            "Total Moisture Facial Cream"
+        ];
 
+        products.forEach(productName => {
+            cy.get('.fixed_wrapper .prdocutname').each(($el, index) => {
+                if ($el.text() === productName) {
+                    cy.log($el.text())
+                    cy.get('.productcart').eq(index).click({ force: true });
+
+                }
+            });
+        });
+
+        cy.get('.dropdown-toggle > .fa').click();
     });
-})
+
+});
+
