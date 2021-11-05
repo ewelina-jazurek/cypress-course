@@ -28,12 +28,12 @@
 // }
 
 // // plugins file
-// module.exports = (on, config) => {
-//   // accept a configFile value or use development by default
-//   const  file = config.env.configFile || 'development'
+module.exports = (on, config) => {
+  //   // accept a configFile value or use development by default
+  const file = config.env.configFile || 'development'
 
-//   return getConfigurationByFile(file)
-// }
+  return getConfigurationByFile(file)
+}
 
 /**
  * @type {Cypress.PluginConfig}
@@ -42,4 +42,10 @@
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+}
+
+const cucumber = require('cypress-cucumber-preprocessor').default
+
+module.exports = (on, config) => {
+  on('file:preprocessor', cucumber())
 }
